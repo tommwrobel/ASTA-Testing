@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Excercise01Test {
 
@@ -51,18 +52,21 @@ public class Excercise01Test {
 
         //and
         WebElement webElementPriceOfItem = driver.findElement(By.cssSelector(".caption p"));
-        BigDecimal priceOfItem = new BigDecimal(webElementPriceOfItem.getText().substring(6, 11));
-        BigDecimal expectedPriceOfItems = priceOfItem.multiply(BigDecimal.valueOf(NUMBER_OF_ELEMENTS));
+        System.out.println(webElementPriceOfItem.getText().substring(6).replaceAll("[^1-9.]",""));
+        BigDecimal priceOfItem = new BigDecimal(webElementPriceOfItem.getText().replaceAll("[^1-9.]",""));
+        BigDecimal expectedPriceOfItems = priceOfItem.multiply(BigDecimal.valueOf(NUMBER_OF_ELEMENTS)).stripTrailingZeros();
 
         //then
+        //checking number of items in shopping cart
         WebElement summaryQuantity = driver.findElement(By.className("summary-quantity"));
         String actualText = summaryQuantity.getText();
         String expectedText = String.valueOf(NUMBER_OF_ELEMENTS);
         assertEquals(expectedText, actualText);
 
+        //checking summary price of items in basket
         WebElement webElementActualPriceOfItems = driver.findElement(By.className("summary-price"));
-        BigDecimal actualPriceOfItems = new BigDecimal(webElementActualPriceOfItems.getText().substring(0, 6));
-        assertEquals(expectedPriceOfItems, actualPriceOfItems);
+        BigDecimal actualPriceOfItems = new BigDecimal(webElementActualPriceOfItems.getText().replaceAll("[^1-9.]","")).stripTrailingZeros();
+        assertTrue(expectedPriceOfItems.equals(actualPriceOfItems));
     }
 
     @Test
