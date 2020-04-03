@@ -29,6 +29,7 @@ public class ShoppingCartTest extends TestBase {
 
         //and
         LOGGER.info("Expeted summary price calculations");
+        expectedPriceOfItemsInCart = new BigDecimal(0);
         expectedPriceOfItemsInCart = expectedPriceOfItemsInCart.add(page.getPriceOfItem(2).multiply(BigDecimal.valueOf(15))).stripTrailingZeros();
         expectedPriceOfItemsInCart = expectedPriceOfItemsInCart.add(page.getPriceOfItem(3).multiply(BigDecimal.valueOf(10))).stripTrailingZeros();
 
