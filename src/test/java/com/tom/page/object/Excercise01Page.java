@@ -1,8 +1,10 @@
 package com.tom.page.object;
 
-import org.openqa.selenium.WebDriver;
+import com.tom.driver.manager.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,16 +28,23 @@ public class Excercise01Page {
     @FindBy(className = "summary-price")
     private WebElement summaryPriceOfItemsInCart;
 
-    private WebDriver driver;
+    private By buttonRemoveFromCart = By.cssSelector("[data-remove-from-basket]");
 
-    public Excercise01Page(WebDriver driver) {
-        this.driver = driver;
+    public Excercise01Page() {
+        PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
-    public void addItemToCart(int itemIndex, int numberOfItems) {
+    public Excercise01Page addItemToCart(int itemIndex, int numberOfItems) {
         inputNumberOfItems.get(itemIndex).clear();
         inputNumberOfItems.get(itemIndex).sendKeys(String.valueOf(numberOfItems));
         buttonAddItemToCart.get(itemIndex).click();
+        return this;
+    }
+
+    public Excercise01Page removeFirstAddedItemFromCart() {
+        WebElement buttonRemoveFromCart = DriverManager.getWebDriver().findElement(this.buttonRemoveFromCart);
+        buttonRemoveFromCart.click();
+        return this;
     }
 
     public int getNumberOfItemsInCart() {
@@ -49,5 +58,4 @@ public class Excercise01Page {
     public BigDecimal getPriceOfItemsInCart() {
         return new BigDecimal(summaryPriceOfItemsInCart.getText().replaceAll("[^1-9.]", "")).stripTrailingZeros();
     }
-
 }
