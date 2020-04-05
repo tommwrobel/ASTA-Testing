@@ -8,8 +8,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestBase {
-    public final Logger LOGGER = LogManager.getRootLogger();
-
     @BeforeEach
     public void beforeEachTest() {
         DriverManager.getWebDriver();

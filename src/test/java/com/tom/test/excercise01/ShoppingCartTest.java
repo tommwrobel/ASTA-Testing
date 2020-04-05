@@ -8,48 +8,46 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
+import static com.tom.navigation.PageURLs.EXCERCISE_01_URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ShoppingCartTest extends TestBase {
+class ShoppingCartTest extends TestBase {
 
     @Test
     @DisplayName("Adding and removing items from cart.")
-    public void addingToCartAndRemovingFromCartItemsTest() {
+    void addingToCartAndRemovingFromCartItemsTest() {
         //given
         Excercise01Page page = new Excercise01Page();
-        int actualItemsInCart;
         final int EXPECTED_ITEMS_IN_CART = 25;
-        BigDecimal actualPriceOfItemsInCart;
-        BigDecimal expectedPriceOfItemsInCart;
-        String pageUrl = "https://testingcup.pgs-soft.com/task_1";
 
         //when
-        LOGGER.info("Navigating to page {}", pageUrl);
-        DriverUtils.navigateToPage(pageUrl);
+        page.log().info("Navigating to page {}", EXCERCISE_01_URL);
+        DriverUtils.navigateToPage(EXCERCISE_01_URL);
 
         //and
-        LOGGER.info("Expeted summary price calculations");
-        expectedPriceOfItemsInCart = new BigDecimal(0);
+        page.log().info("Expected summary price calculations");
+        BigDecimal expectedPriceOfItemsInCart = new BigDecimal(0);
         expectedPriceOfItemsInCart = expectedPriceOfItemsInCart.add(page.getPriceOfItem(2).multiply(BigDecimal.valueOf(15))).stripTrailingZeros();
         expectedPriceOfItemsInCart = expectedPriceOfItemsInCart.add(page.getPriceOfItem(3).multiply(BigDecimal.valueOf(10))).stripTrailingZeros();
 
         //and
-        LOGGER.info("Adding items to cart and removing first item from cart.");
-        actualItemsInCart = page.addItemToCart(1, 29)
+        page.log().info("Adding items to cart and removing first item from cart.");
+        int actualItemsInCart = page
+                .addItemToCart(1, 29)
                 .addItemToCart(2, 15)
                 .addItemToCart(3, 10)
                 .removeFirstAddedItemFromCart()
                 .getNumberOfItemsInCart();
 
         //and
-        LOGGER.info("Getting actual summary price of items in cart.");
-        actualPriceOfItemsInCart = page.getPriceOfItemsInCart();
+        page.log().info("Getting actual summary price of items in cart.");
+        BigDecimal actualPriceOfItemsInCart = page.getPriceOfItemsInCart();
 
         //then
-        LOGGER.info("Asserting that number of expected items in cart is equal to actual number of it.");
+        page.log().info("Asserting that number of expected items in cart is equal to actual number of it.");
         assertEquals(EXPECTED_ITEMS_IN_CART, actualItemsInCart);
 
-        LOGGER.info("Asserting that expected summary price of items in cart is equal to actual price of it.");
+        page.log().info("Asserting that expected summary price of items in cart is equal to actual price of it.");
         assertEquals(expectedPriceOfItemsInCart, actualPriceOfItemsInCart);
     }
 }

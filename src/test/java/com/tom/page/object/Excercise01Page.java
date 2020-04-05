@@ -11,7 +11,7 @@ import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
-public class Excercise01Page {
+public class Excercise01Page extends BasePage {
 
     @FindBy(css = ".input-group > input.form-control")
     private List<WebElement> inputNumberOfItems;
@@ -28,10 +28,11 @@ public class Excercise01Page {
     @FindBy(className = "summary-price")
     private WebElement summaryPriceOfItemsInCart;
 
-    private By buttonRemoveFromCart = By.cssSelector("[data-remove-from-basket]");
+    private final By BUTTON_REMOVE_FROM_CART;
 
     public Excercise01Page() {
-        PageFactory.initElements(DriverManager.getWebDriver(), this);
+        super();
+        BUTTON_REMOVE_FROM_CART = By.cssSelector("[data-remove-from-basket]");
     }
 
     public Excercise01Page addItemToCart(int itemIndex, int numberOfItems) {
@@ -42,7 +43,7 @@ public class Excercise01Page {
     }
 
     public Excercise01Page removeFirstAddedItemFromCart() {
-        WebElement buttonRemoveFromCart = DriverManager.getWebDriver().findElement(this.buttonRemoveFromCart);
+        WebElement buttonRemoveFromCart = DriverManager.getWebDriver().findElement(this.BUTTON_REMOVE_FROM_CART);
         buttonRemoveFromCart.click();
         return this;
     }
@@ -58,4 +59,5 @@ public class Excercise01Page {
     public BigDecimal getPriceOfItemsInCart() {
         return new BigDecimal(summaryPriceOfItemsInCart.getText().replaceAll("[^1-9.]", "")).stripTrailingZeros();
     }
+
 }
