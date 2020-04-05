@@ -21,11 +21,11 @@ class ShoppingCartTest extends TestBase {
         final int EXPECTED_ITEMS_IN_CART = 25;
 
         //when
-        page.log().info("Navigating to page {}", EXCERCISE_01_URL);
+        page.log().info("Navigating to page {}.", EXCERCISE_01_URL);
         DriverUtils.navigateToPage(EXCERCISE_01_URL);
 
         //and
-        page.log().info("Expected summary price calculations");
+        page.log().info("Expected summary price calculations.");
         BigDecimal expectedPriceOfItemsInCart = new BigDecimal(0);
         expectedPriceOfItemsInCart = expectedPriceOfItemsInCart.add(page.getPriceOfItem(2).multiply(BigDecimal.valueOf(15))).stripTrailingZeros();
         expectedPriceOfItemsInCart = expectedPriceOfItemsInCart.add(page.getPriceOfItem(3).multiply(BigDecimal.valueOf(10))).stripTrailingZeros();
