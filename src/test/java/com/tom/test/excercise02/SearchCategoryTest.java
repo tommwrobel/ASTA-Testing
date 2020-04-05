@@ -14,16 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class SearchCategoryTest extends TestBase {
 
     @Test
-    @DisplayName("Checking if search category field return expected results")
+    @DisplayName("Checking if searching and choosing category return expected results")
     void checkingIfSearchCategoryFieldReturnsExpectedResults() {
         //given
         Excercise02Page page = new Excercise02Page();
-        String categoryText = page.getCategoryText(1);
-
         page.log().info("Navigating to page {}.", EXCERCISE_02_URL);
         DriverUtils.navigateToPage(EXCERCISE_02_URL);
 
         //when
+        String categoryText = page.getCategoryText(1);
         page.log().info("Typing category text first 3 letters in uppercase, submitting and getting results.");
         List<String> searchResults = page.typeIntoSearchCategoryField(categoryText).submitSearchField().getResults();
 

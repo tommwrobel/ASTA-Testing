@@ -10,7 +10,6 @@ public abstract class BasePage {
     public final Logger LOGGER = LogManager.getRootLogger();
 
     public BasePage() {
-        log().info("Initializing elemnets in BasePage");
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 

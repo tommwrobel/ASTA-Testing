@@ -16,10 +16,6 @@ public class Excercise02Page extends BasePage {
     @FindBy(className = "select2")
     private WebElement selectCategories;
 
-    public Excercise02Page() {
-        super();
-    }
-
     public Excercise02Page typeIntoSearchCategoryField(String text) {
         if (DriverManager.getWebDriver().findElements(By.className("select2-search__field")).size() == 0) {
             selectCategories.click();
@@ -42,7 +38,6 @@ public class Excercise02Page extends BasePage {
         List<String> results = new ArrayList<>();
 
         for (WebElement serchResult : searchResults) {
-            System.out.println(serchResult.getText());
             results.add(serchResult.getText());
         }
 
