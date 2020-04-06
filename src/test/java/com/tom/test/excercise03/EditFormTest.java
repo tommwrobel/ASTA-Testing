@@ -36,7 +36,7 @@ class EditFormTest extends TestBase {
                 .chooseStartEditOptionFromMenu()
                 .fillFormWithData(firstName, lastName, noteText, phoneNumber, filePath)
                 .submitForm()
-                .isSaveDataMessageDisplayed();
+                .isElementDisplayed(page.getSaveDataMessageLocator(), 10);
 
         //then
         assertTrue(isSaveDataMessageDisplayed);
