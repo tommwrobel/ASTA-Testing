@@ -1,14 +1,15 @@
 package com.tom.test.excercise03;
 
+import com.github.javafaker.Faker;
 import com.tom.driver.manager.DriverUtils;
-import com.tom.page.object.Excercise02Page;
 import com.tom.page.object.Excercise03Page;
 import com.tom.test.TestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.List;
+import java.util.Locale;
+
 
 import static com.tom.navigation.PageURLs.EXCERCISE_03_URL;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,12 +24,17 @@ class EditFormTest extends TestBase {
         Excercise03Page page = new Excercise03Page();
         page.log().info("Navigating to page {}.", EXCERCISE_03_URL);
         DriverUtils.navigateToPage(EXCERCISE_03_URL);
+        Faker dataFaker = new Faker(new Locale("pl"));
+        String firstName = dataFaker.name().firstName();
+        String lastName = dataFaker.name().lastName();
+        String noteText = dataFaker.lorem().sentence();
+        String phoneNumber = dataFaker.phoneNumber().cellPhone();
+        String filePath = new File("src/test/resources/img/example.png").getAbsolutePath();
 
         //when
-        String filePath = new File("src/test/resources/img/example.png").getAbsolutePath();
         boolean isSaveDataMessageDisplayed =  page
                 .chooseStartEditOptionFromMenu()
-                .fillFormWithData("Adam", "Kowalski", "Exampl note", "1020304", filePath)
+                .fillFormWithData(firstName, lastName, noteText, phoneNumber, filePath)
                 .submitForm()
                 .isSaveDataMessageDisplayed();
 
