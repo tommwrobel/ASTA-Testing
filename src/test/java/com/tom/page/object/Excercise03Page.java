@@ -43,8 +43,7 @@ public class Excercise03Page extends BasePage {
         action.moveToElement(dropDownMenu).perform();
         action.moveToElement(subMenuOption).perform();
         startEditMenuOption.click();
-        sleep(2);
-        return  this;
+        return this;
     }
 
     public Excercise03Page fillFormWithData(String name, String surname, String note, String phone, String filePath) {
@@ -62,30 +61,15 @@ public class Excercise03Page extends BasePage {
     }
 
     public boolean isSaveDataMessageDisplayed() {
-
-        sleep(1);
         return DriverManager.getWebDriver().findElements(By.cssSelector("span[data-notify-text]")).size() > 0;
     }
 
     public boolean isWholeFormEnabled() {
-        if(nameField.isEnabled()
+        return nameField.isEnabled()
                 && surnameField.isEnabled()
                 && noteField.isEnabled()
                 && phoneField.isEnabled()
                 && fileField.isEnabled()
-                && saveButton.isEnabled()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    private void sleep(int s) {
-        try {
-            Thread.sleep(s*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+                && saveButton.isEnabled();
     }
 }

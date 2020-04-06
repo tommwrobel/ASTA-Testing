@@ -7,11 +7,12 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Excercise02Page extends BasePage {
 
     @FindBy(css = ".js-category-select option:not(:first-child)")
-    List<WebElement> categoryOptions;
+    private List<WebElement> categoryOptions;
 
     @FindBy(className = "select2")
     private WebElement selectCategories;
@@ -23,8 +24,11 @@ public class Excercise02Page extends BasePage {
 
         String searchText = text.substring(0, 3).toUpperCase();
 
-        WebElement searchCategoryField = DriverManager.getWebDriver().findElement(By.className("select2-search__field"));
-        searchCategoryField.sendKeys(searchText);
+        DriverManager
+                .getWebDriver()
+                .findElement(By.className("select2-search__field"))
+                .sendKeys(searchText);
+
         return this;
     }
 
@@ -34,14 +38,7 @@ public class Excercise02Page extends BasePage {
     }
 
     public List<String> getResults() {
-        List<WebElement> searchResults = DriverManager.getWebDriver().findElements(By.cssSelector(".caption p>strong"));
-        List<String> results = new ArrayList<>();
-
-        for (WebElement serchResult : searchResults) {
-            results.add(serchResult.getText());
-        }
-
-        return results;
+        return DriverManager.getWebDriver().findElements(By.cssSelector(".caption p>strong")).stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public String getCategoryText(int categoryIndex) {
