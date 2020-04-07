@@ -14,6 +14,9 @@ public class Excercise04Page extends BasePage {
     private final By EMAIL_FIELD_LOCATOR;
     private final By PHONE_FIELD_LOCATOR;
     private final By SUBMIT_BUTTON_LOCATOR;
+
+    private final By EMAIL_ERROR_LOCATOR;
+    private final By PHONE_ERROR_LOCATOR;
     private By finalMessageLocator;
 
     public Excercise04Page() {
@@ -24,6 +27,8 @@ public class Excercise04Page extends BasePage {
         EMAIL_FIELD_LOCATOR = By.name("email");
         PHONE_FIELD_LOCATOR = By.name("phone");
         SUBMIT_BUTTON_LOCATOR = By.id("save-btn");
+        EMAIL_ERROR_LOCATOR = By.cssSelector("input[name=\"email\"] ~ .error");
+        PHONE_ERROR_LOCATOR = By.cssSelector("input[name=\"phone\"] ~ .error");;
         finalMessageLocator = By.tagName("H1");
     }
 
@@ -53,7 +58,15 @@ public class Excercise04Page extends BasePage {
         return this;
     }
 
-    public By getFinalMessageLocator() {
+    public By getFINAL_MESSAGE_LOCATOR() {
         return finalMessageLocator;
+    }
+
+    public By getEMAIL_ERROR_LOCATOR() {
+        return EMAIL_ERROR_LOCATOR;
+    }
+
+    public By getPHONE_ERROR_LOCATOR() {
+        return PHONE_ERROR_LOCATOR;
     }
 }
