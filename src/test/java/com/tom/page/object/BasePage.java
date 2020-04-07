@@ -26,4 +26,14 @@ public abstract class BasePage {
         WebElement element = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         return element.isDisplayed();
     }
+
+    public WebElement waitUntilElementIsDisplayed(By elementLocator, int timeout) {
+        WebDriverWait webDriverWait = new WebDriverWait(DriverManager.getWebDriver(), timeout);
+        return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
+    }
+
+    public WebElement waitUntilElementToBeClickable(By elementLocator, int timeout) {
+        WebDriverWait webDriverWait = new WebDriverWait(DriverManager.getWebDriver(), timeout);
+        return webDriverWait.until(ExpectedConditions.elementToBeClickable(elementLocator));
+    }
 }
