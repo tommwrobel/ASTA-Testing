@@ -24,6 +24,7 @@ class EditFormTest extends TestBase {
         Excercise03Page page = new Excercise03Page();
         page.log().info("Navigating to page {}.", EXCERCISE_03_URL);
         DriverUtils.navigateToPage(EXCERCISE_03_URL);
+
         Faker dataFaker = new Faker(new Locale("pl"));
         String firstName = dataFaker.name().firstName();
         String lastName = dataFaker.name().lastName();

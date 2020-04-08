@@ -4,6 +4,7 @@ import com.tom.driver.manager.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,8 +24,11 @@ public abstract class BasePage {
 
     public boolean isElementDisplayed(By elementLocator, int timeout) {
         WebDriverWait webDriverWait = new WebDriverWait(DriverManager.getWebDriver(), timeout);
-        WebElement element = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
-        return element.isDisplayed();
+        try {
+            return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator)).isDisplayed();
+        } catch (TimeoutException eTO) {
+            return false;
+        }
     }
 
     public WebElement waitUntilElementIsDisplayed(By elementLocator, int timeout) {
