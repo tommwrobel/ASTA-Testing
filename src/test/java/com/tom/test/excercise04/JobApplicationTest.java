@@ -32,7 +32,7 @@ public class JobApplicationTest extends TestBase {
                 .openFormWindow()
                 .fillForm(name, email, phone)
                 .submitForm()
-                .isElementDisplayed(page.getFINAL_MESSAGE_LOCATOR(), 10);
+                .isElementDisplayed(page.FINAL_MESSAGE_LOCATOR, 10);
 
         //then
         assertTrue(applicationResult);
@@ -55,7 +55,7 @@ public class JobApplicationTest extends TestBase {
                 .fillForm(name, wrongEmail, wrongPhone)
                 .submitForm();
 
-        boolean areErrorMessagesDisplayed = page.isElementDisplayed(page.getEMAIL_ERROR_LOCATOR(), 10) && page.isElementDisplayed(page.getPHONE_ERROR_LOCATOR(), 10);
+        boolean areErrorMessagesDisplayed = page.isElementDisplayed(page.EMAIL_ERROR_LOCATOR, 10) && page.isElementDisplayed(page.PHONE_ERROR_LOCATOR, 10);
 
         //then
         assertTrue(areErrorMessagesDisplayed);

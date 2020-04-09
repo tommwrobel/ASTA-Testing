@@ -38,12 +38,7 @@ public class Excercise03Page extends BasePage {
     @FindBy(id="save-btn")
     WebElement saveButton;
 
-    private final By SAVE_DATA_MESSAGE_LOCATOR;
-
-    public Excercise03Page() {
-        super();
-        SAVE_DATA_MESSAGE_LOCATOR = By.cssSelector("span[data-notify-text]");
-    }
+    private final By SAVE_DATA_MESSAGE_LOCATOR = By.cssSelector("span[data-notify-text]");
 
     public Excercise03Page chooseStartEditOptionFromMenu() {
         Actions action = new Actions(DriverManager.getWebDriver());

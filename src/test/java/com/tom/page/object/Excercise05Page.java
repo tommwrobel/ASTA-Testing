@@ -13,16 +13,7 @@ public class Excercise05Page extends BasePage {
     @FindBy(css = "input[type='file']")
     WebElement loadFileButton;
 
-    private final By LOADED_ROWS_LOCATOR;
-
-    public By getLOADED_ROWS_LOCATOR() {
-        return LOADED_ROWS_LOCATOR;
-    }
-
-    public Excercise05Page() {
-        super();
-        LOADED_ROWS_LOCATOR = By.cssSelector(".table > tbody > tr");
-    }
+    private final By LOADED_ROWS_LOCATOR = By.cssSelector(".table > tbody > tr");
 
     public Excercise05Page loadFile(String path) {
         loadFileButton.sendKeys(path);

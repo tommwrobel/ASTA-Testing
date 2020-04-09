@@ -27,12 +27,7 @@ public class Excercise01Page extends BasePage {
     @FindBy(className = "summary-price")
     private WebElement summaryPriceOfItemsInCart;
 
-    private final By BUTTON_REMOVE_FROM_CART;
-
-    public Excercise01Page() {
-        super();
-        BUTTON_REMOVE_FROM_CART = By.cssSelector("[data-remove-from-basket]");
-    }
+    private final By BUTTON_REMOVE_FROM_CART = By.cssSelector("[data-remove-from-basket]");
 
     public Excercise01Page addItemToCart(int itemIndex, int numberOfItems) {
         inputNumberOfItems.get(itemIndex).clear();

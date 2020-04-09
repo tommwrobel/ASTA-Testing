@@ -32,7 +32,7 @@ class ShoppingCartTest extends TestBase {
 
         //and
         page.log().info("Adding items to cart and removing first item from cart.");
-        int actualItemsInCart = page
+        int actuaNumberOflItemsInCart = page
                 .addItemToCart(1, 29)
                 .addItemToCart(2, 15)
                 .addItemToCart(3, 10)
@@ -45,7 +45,7 @@ class ShoppingCartTest extends TestBase {
 
         //then
         page.log().info("Asserting that number of expected items in cart is equal to actual number of it.");
-        assertEquals(EXPECTED_ITEMS_IN_CART, actualItemsInCart);
+        assertEquals(EXPECTED_ITEMS_IN_CART, actuaNumberOflItemsInCart);
 
         page.log().info("Asserting that expected summary price of items in cart is equal to actual price of it.");
         assertEquals(expectedPriceOfItemsInCart, actualPriceOfItemsInCart);
