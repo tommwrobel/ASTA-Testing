@@ -17,7 +17,11 @@ public class Excercise06DownloadPage extends BasePage {
     }
 
     public Excercise06DownloadPage logout() {
-        logoutButton().click();
+        logoutButton.click();
         return this;
+    }
+
+    public boolean isDownloadLinkDisplayed() {
+        return isElementDisplayed(downloadLink, 10);
     }
 }

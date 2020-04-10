@@ -1,30 +1,27 @@
-package com.tom.test.excercise01;
+package com.tom.test.excercise07;
 
 import com.tom.driver.manager.DriverUtils;
-import com.tom.page.object.Excercise01Page;
+import com.tom.page.object.Excercise07Page;
 import com.tom.test.TestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static com.tom.navigation.PageURLs.EXCERCISE_01_URL;
+import static com.tom.navigation.PageURLs.EXCERCISE_07_URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ShoppingCartTest extends TestBase {
+public class DragAndDropShoppingCartTest extends TestBase {
 
     @Test
-    @DisplayName("Adding and removing items from cart.")
+    @DisplayName("Adding by drag and drop and removing items from cart.")
     void addingToCartAndRemovingFromCartItemsTest() {
         //given
-        Excercise01Page page = new Excercise01Page();
+        Excercise07Page page = new Excercise07Page();
+        DriverUtils.navigateToPage(EXCERCISE_07_URL);
         final int EXPECTED_ITEMS_IN_CART = 25;
 
         //when
-        page.log().info("Navigating to page {}.", EXCERCISE_01_URL);
-        DriverUtils.navigateToPage(EXCERCISE_01_URL);
-
-        //and
         page.log().info("Expected summary price calculations.");
         BigDecimal expectedPriceOfItemsInCart = new BigDecimal(0);
         expectedPriceOfItemsInCart = expectedPriceOfItemsInCart.add(page.getPriceOfItem(2).multiply(BigDecimal.valueOf(15))).stripTrailingZeros();
@@ -50,4 +47,6 @@ class ShoppingCartTest extends TestBase {
         page.log().info("Asserting that expected summary price of items in cart is equal to actual price of it.");
         assertEquals(expectedPriceOfItemsInCart, actualPriceOfItemsInCart);
     }
+
+
 }
