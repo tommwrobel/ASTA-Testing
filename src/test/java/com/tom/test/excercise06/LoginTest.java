@@ -40,7 +40,7 @@ public class LoginTest extends TestBase {
         //when
         loginPage.login("tester", "123-xyz");
         Excercise06DownloadPage downloadPage = new Excercise06DownloadPage();
-        boolean isDownloadLinkDisplayed = downloadPage.isDownloadLinkDisplayed();
+        boolean isDownloadLinkDisplayed = downloadPage.isElementDisplayed(downloadPage.getDownloadLink(), 10);
 
         //then
         assertTrue(isDownloadLinkDisplayed);

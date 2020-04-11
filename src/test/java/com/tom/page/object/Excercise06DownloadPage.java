@@ -3,6 +3,8 @@ package com.tom.page.object;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.File;
+
 public class Excercise06DownloadPage extends BasePage {
 
     @FindBy(css = ".task div:last-child a")
@@ -21,7 +23,25 @@ public class Excercise06DownloadPage extends BasePage {
         return this;
     }
 
-    public boolean isDownloadLinkDisplayed() {
-        return isElementDisplayed(downloadLink, 10);
+    public WebElement getDownloadLink() {
+        return downloadLink;
+    }
+
+    public boolean isDownloadedFileProper(String pathToFile, int targetFileSize, int waitTime) {
+
+        File file = new File(pathToFile);
+
+        for (int i = 0; i < waitTime; i++) {
+            if (file.exists() && file.length() >= targetFileSize) {
+                return true;
+            } else {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 }
