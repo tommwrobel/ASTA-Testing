@@ -7,6 +7,8 @@ import com.tom.test.TestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.tom.navigation.PageURLs.EXCERCISE_06_URL;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,14 +21,17 @@ public class DownloadFileTest extends TestBase {
         DriverUtils.navigateToPage(EXCERCISE_06_URL);
         loginPage.login("tester", "123-xyz");
         Excercise06DownloadPage downloadPage = new Excercise06DownloadPage();
-        String downloadedFileName = "pgs_cv.jpg";
+        String filePath = "C:\\Users\\Tomek\\IdeaProjects\\tmp\\pgs_cv.jpg";
 
         //when
-        boolean isdownloadedFileProper = downloadPage
+        boolean isDownloadedFileProper = downloadPage
                 .downloadFile()
-                .isDownloadedFileProper("C:\\Users\\Tomek\\IdeaProjects\\tmp\\pgs_cv.jpg", 1200000, 10);
+                .isDownloadedFileProper(filePath, 10);
 
         //then
-        assertTrue(isdownloadedFileProper);
+        assertTrue(isDownloadedFileProper);
+
+        //cleaning
+        new File(filePath).delete();
     }
 }

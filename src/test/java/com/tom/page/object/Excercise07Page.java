@@ -42,13 +42,18 @@ public class Excercise07Page extends BasePage {
         inputNumberOfItems.get(itemIndex).sendKeys(String.valueOf(numberOfItems));
 
         Actions actions = new Actions(DriverManager.getWebDriver());
-        actions.clickAndHold(itemHandle.get(itemIndex)).moveToElement(cartTitle, 0, 80).release().build().perform();
+        actions.clickAndHold(itemHandle.get(itemIndex))
+                .moveToElement(cartTitle, 0, 80)
+                .release()
+                .build().perform();
 
         return this;
     }
 
     public Excercise07Page removeItemFromCart(int itemIndex) {
-        DriverManager.getWebDriver().findElement(By.cssSelector(".basket-list button[data-product-name='" + itemName.get(itemIndex).getText() + "']")).click();
+        DriverManager.getWebDriver()
+                .findElement(By.cssSelector(".basket-list button[data-product-name='" + itemName.get(itemIndex).getText() + "']"))
+                .click();
         return this;
     }
 

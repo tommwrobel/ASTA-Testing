@@ -27,12 +27,12 @@ public class Excercise06DownloadPage extends BasePage {
         return downloadLink;
     }
 
-    public boolean isDownloadedFileProper(String pathToFile, int targetFileSize, int waitTime) {
+    public boolean isDownloadedFileProper(String pathToFile, int waitTime) {
 
         File file = new File(pathToFile);
 
         for (int i = 0; i < waitTime; i++) {
-            if (file.exists() && file.length() >= targetFileSize) {
+            if (file.exists()) {
                 return true;
             } else {
                 try {

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 public class Excercise08Page extends BasePage {
 
     @FindBy(name = "task8_form[cardType]")
-    private WebElement cardTypeSelectElement;
+    private WebElement cardTypeElement;
     private Select cardTypeSelect;
 
     @FindBy(name = "task8_form[name]")
@@ -30,25 +30,24 @@ public class Excercise08Page extends BasePage {
     private WebElement yearSelectElement;
     private Select yearSelect;
 
-    @FindBy(css = ".form-group input[type='submit'")
+    @FindBy(css = ".form-group button[type='submit'")
     private WebElement submitButton;
 
     @FindBy(className = "glyphicon-info-sign")
     private WebElement ccvInfo;
 
     public final By CCV_INFO_TOOLTIP_LOCATOR = By.className("tooltip");
+    public final By ALERT_SUCCESS_LOCATOR = By.className("alert-success");
 
-    public Excercise08Page() {
-        super();
-        cardTypeSelect = new Select(cardTypeSelectElement);
+    public Excercise08Page fillForm(String cardType, String name, String cardNumber, String cardCcvNumber, int monthIndex, int yearIndex) {
+
+        cardTypeSelect = new Select(cardTypeElement);
         monthSelect = new Select(monthSelectElement);
         yearSelect = new Select(yearSelectElement);
-    }
 
-    public Excercise08Page fillForm(int cardTypeIndex, String name, long cardNumber, int cardCcvNumber, int monthIndex, int yearIndex) {
-        cardTypeSelect.selectByIndex(cardTypeIndex);
+        cardTypeSelect.selectByVisibleText(cardType);
         nameField.sendKeys(name);
-        cardNumberField.sendKeys(Long.toString(cardNumber));
+        cardNumberField.sendKeys(cardNumber);
         cardCvvNumberField.sendKeys(String.valueOf(cardCcvNumber));
         monthSelect.selectByIndex(monthIndex);
         yearSelect.selectByIndex(yearIndex);
@@ -62,12 +61,7 @@ public class Excercise08Page extends BasePage {
 
     public Excercise08Page moveMouseToCcvInfo() {
         Actions actions = new Actions(DriverManager.getWebDriver());
-        actions.moveToElement(ccvInfo);
+        actions.moveToElement(ccvInfo).perform();
         return this;
-    }
-
-    public String getCardNumberPattern(int cardIndex) {
-        cardTypeSelect.selectByIndex(cardIndex);
-        return cardNumberField.getAttribute("pattern");
     }
 }

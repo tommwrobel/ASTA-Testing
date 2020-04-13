@@ -38,7 +38,10 @@ public class Excercise01Page extends BasePage {
     }
 
     public Excercise01Page removeItemFromCart(int itemIndex) {
-        DriverManager.getWebDriver().findElement(By.cssSelector(".basket-list button[data-product-name='" + itemName.get(itemIndex).getText() + "']")).click();
+        DriverManager
+                .getWebDriver()
+                .findElement(By.cssSelector(".basket-list button[data-product-name='" + itemName.get(itemIndex).getText() + "']"))
+                .click();
         return this;
     }
 
