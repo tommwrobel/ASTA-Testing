@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_06_URL;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DownloadFileTest extends TestBase {
     @Test
@@ -29,7 +29,7 @@ public class DownloadFileTest extends TestBase {
                 .isDownloadedFileProper(filePath, 10);
 
         //then
-        assertTrue(isDownloadedFileProper);
+        assertThat(isDownloadedFileProper).isTrue();
 
         //cleaning
         new File(filePath).delete();

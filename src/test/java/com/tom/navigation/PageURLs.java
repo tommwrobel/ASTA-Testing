@@ -10,5 +10,4 @@ public class PageURLs {
     public static final String EXCERCISE_06_URL = APPLICATION_URL + "task_6";
     public static final String EXCERCISE_07_URL = APPLICATION_URL + "task_7";
     public static final String EXCERCISE_08_URL = APPLICATION_URL + "task_8";
-    public static final String EXCERCISE_09_URL = APPLICATION_URL + "task_9";
 }

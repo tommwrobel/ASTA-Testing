@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Locale;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_04_URL;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JobApplicationTest extends TestBase {
@@ -58,6 +59,6 @@ public class JobApplicationTest extends TestBase {
         boolean areErrorMessagesDisplayed = page.isElementDisplayed(page.EMAIL_ERROR_LOCATOR, 10) && page.isElementDisplayed(page.PHONE_ERROR_LOCATOR, 10);
 
         //then
-        assertTrue(areErrorMessagesDisplayed);
+        assertThat(areErrorMessagesDisplayed).isTrue();
     }
 }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_06_URL;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginTest extends TestBase {
 
@@ -26,7 +26,7 @@ public class LoginTest extends TestBase {
                 .isElementDisplayed(loginPage.ERROR_MESSAGE_LOCATOR, 10);
 
         //then
-        assertTrue(isErrorMessageDisplated);
+        assertThat(isErrorMessageDisplated).isTrue();
     }
 
     @Test
@@ -43,7 +43,7 @@ public class LoginTest extends TestBase {
         boolean isDownloadLinkDisplayed = downloadPage.isElementDisplayed(downloadPage.getDownloadLink(), 10);
 
         //then
-        assertTrue(isDownloadLinkDisplayed);
+        assertThat(isDownloadLinkDisplayed).isTrue();
     }
 
 }

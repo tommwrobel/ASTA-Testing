@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_02_URL;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class SearchCategoryTest extends TestBase {
 
@@ -29,6 +29,6 @@ class SearchCategoryTest extends TestBase {
         //then
         page.log().info("Asserting that results items have chosen category.");
         boolean allEqual = searchResults.isEmpty() || searchResults.stream().allMatch(categoryText::equals);
-        assertTrue(allEqual);
+        assertThat(allEqual).isTrue();
     }
 }

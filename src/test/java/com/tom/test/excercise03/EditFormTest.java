@@ -10,10 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.Locale;
 
-
 import static com.tom.navigation.PageURLs.EXCERCISE_03_URL;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class EditFormTest extends TestBase {
 
@@ -40,7 +38,7 @@ class EditFormTest extends TestBase {
                 .isElementDisplayed(page.getSaveDataMessageLocator(), 10);
 
         //then
-        assertTrue(isSaveDataMessageDisplayed);
-        assertFalse(page.isWholeFormEnabled());
+        assertThat(isSaveDataMessageDisplayed).isTrue();
+        assertThat(page.isWholeFormEnabled()).isFalse();
     }
 }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_08_URL;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TooltipTest extends TestBase {
 
@@ -24,7 +24,7 @@ public class TooltipTest extends TestBase {
                 .isElementDisplayed(page.CCV_INFO_TOOLTIP_LOCATOR, 10);
 
         //then
-        assertTrue(isTooltipDisplayed);
+        assertThat(isTooltipDisplayed).isTrue();
     }
 
 }

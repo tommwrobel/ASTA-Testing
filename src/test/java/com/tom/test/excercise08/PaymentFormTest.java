@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_08_URL;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PaymentFormTest extends TestBase {
 
@@ -45,6 +45,6 @@ class PaymentFormTest extends TestBase {
                 .isElementDisplayed(page.ALERT_SUCCESS_LOCATOR, 10);
 
         //when
-        assertTrue(isSuccessAlertDisplayed);
+        assertThat(isSuccessAlertDisplayed).isTrue();
     }
 }

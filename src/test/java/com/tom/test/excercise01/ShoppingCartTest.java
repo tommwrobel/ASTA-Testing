@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_01_URL;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ShoppingCartTest extends TestBase {
 
@@ -49,9 +49,9 @@ class ShoppingCartTest extends TestBase {
 
         //then
         page.log().info("Asserting that number of expected items in cart is equal to actual number of it.");
-        assertEquals(EXPECTED_ITEMS_IN_CART, actuaNumberOflItemsInCart);
+        assertThat(EXPECTED_ITEMS_IN_CART).isEqualTo(actuaNumberOflItemsInCart);
 
         page.log().info("Asserting that expected summary price of items in cart is equal to actual price of it.");
-        assertEquals(expectedPriceOfItemsInCart, actualPriceOfItemsInCart);
+        assertThat(expectedPriceOfItemsInCart).isEqualTo(actualPriceOfItemsInCart);
     }
 }

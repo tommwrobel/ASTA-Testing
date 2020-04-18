@@ -1,6 +1,5 @@
 package com.tom.test.excercise05;
 
-import com.tom.driver.manager.DriverManager;
 import com.tom.driver.manager.DriverUtils;
 import com.tom.page.object.Excercise05Page;
 import com.tom.test.TestBase;
@@ -10,8 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.tom.navigation.PageURLs.EXCERCISE_05_URL;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoadDataFileTest extends TestBase {
 
@@ -30,7 +28,7 @@ public class LoadDataFileTest extends TestBase {
 
         //then
         int expectedNumberOfLoadedRows = 10;
-        assertEquals(expectedNumberOfLoadedRows, actualNumberOfLoadedRows);
+        assertThat(expectedNumberOfLoadedRows).isEqualTo(actualNumberOfLoadedRows);
     }
 
     @Test
@@ -49,8 +47,8 @@ public class LoadDataFileTest extends TestBase {
         int actualNumberOfLoadedRows = page.getNumberOfLoadedRows();
 
         //then
-        assertTrue(isAlertPresent );
-        assertEquals(0, actualNumberOfLoadedRows);
+        assertThat(isAlertPresent).isTrue();
+        assertThat(actualNumberOfLoadedRows).isEqualTo(0);
     }
 
 
